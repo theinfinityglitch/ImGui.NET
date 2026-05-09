@@ -338,7 +338,7 @@ class TypeReference
     public TypeReference(string name, string type, int asize, string templateType, EnumDefinition[] enums, string[] typeVariants)
     {
         Name = name;
-        Type = type.Replace("const", string.Empty).Trim();
+        Type = type.Replace("const", string.Empty).Replace("struct", string.Empty).Trim();
 
 
         if (Type.StartsWith("ImVector_"))
@@ -505,7 +505,11 @@ class OverloadDefinition(
     public string FriendlyName { get; } = friendlyName;
     public TypeReference[] Parameters { get; } = parameters;
     public Dictionary<string, string> DefaultValues { get; } = defaultValues;
-    public string ReturnType { get; } = returnType.Replace("const", string.Empty).Replace("inline", string.Empty).Trim();
+    public string ReturnType { get; } = returnType
+        .Replace("const", string.Empty)
+        .Replace("inline", string.Empty)
+        .Replace("struct", string.Empty)
+        .Trim();
     public string StructName { get; } = structName;
     public bool IsMemberFunction { get; } = !string.IsNullOrEmpty(structName);
     public string Comment { get; } = comment;
