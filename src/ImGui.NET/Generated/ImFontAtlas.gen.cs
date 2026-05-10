@@ -15,7 +15,7 @@ namespace ImGuiNET
         public int TexMaxWidth;
         public int TexMaxHeight;
         public void* UserData;
-        public IntPtr TexRef;
+        public ImTextureRef TexRef;
         public ImTextureData* TexData;
         public ImVector TexList;
         public byte Locked;
@@ -86,7 +86,7 @@ namespace ImGuiNET
         public ref int TexMaxWidth => ref Unsafe.AsRef<int>(&NativePtr->TexMaxWidth);
         public ref int TexMaxHeight => ref Unsafe.AsRef<int>(&NativePtr->TexMaxHeight);
         public IntPtr UserData { get => (IntPtr)NativePtr->UserData; set => NativePtr->UserData = (void*)value; }
-        public ref IntPtr TexRef => ref Unsafe.AsRef<IntPtr>(&NativePtr->TexRef);
+        public ref ImTextureRef TexRef => ref Unsafe.AsRef<ImTextureRef>(&NativePtr->TexRef);
         public ImTextureDataPtr TexData => new ImTextureDataPtr(NativePtr->TexData);
         public ImVector<ImTextureDataPtr> TexList => new ImVector<ImTextureDataPtr>(NativePtr->TexList);
         public ref bool Locked => ref Unsafe.AsRef<bool>(&NativePtr->Locked);

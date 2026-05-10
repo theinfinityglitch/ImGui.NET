@@ -10,7 +10,7 @@ namespace ImGuiNET
         public int UniqueID;
         public ImTextureStatus Status;
         public void* BackendUserData;
-        public IntPtr TexID;
+        public ulong TexID;
         public ImTextureFormat Format;
         public int Width;
         public int Height;
@@ -35,7 +35,7 @@ namespace ImGuiNET
         public ref int UniqueID => ref Unsafe.AsRef<int>(&NativePtr->UniqueID);
         public ref ImTextureStatus Status => ref Unsafe.AsRef<ImTextureStatus>(&NativePtr->Status);
         public IntPtr BackendUserData { get => (IntPtr)NativePtr->BackendUserData; set => NativePtr->BackendUserData = (void*)value; }
-        public ref IntPtr TexID => ref Unsafe.AsRef<IntPtr>(&NativePtr->TexID);
+        public ref ulong TexID => ref Unsafe.AsRef<ulong>(&NativePtr->TexID);
         public ref ImTextureFormat Format => ref Unsafe.AsRef<ImTextureFormat>(&NativePtr->Format);
         public ref int Width => ref Unsafe.AsRef<int>(&NativePtr->Width);
         public ref int Height => ref Unsafe.AsRef<int>(&NativePtr->Height);
@@ -80,9 +80,9 @@ namespace ImGuiNET
             int ret = ImGuiNative.ImTextureData_GetSizeInBytes((ImTextureData*)(NativePtr));
             return ret;
         }
-        public IntPtr GetTexID()
+        public ulong GetTexID()
         {
-            IntPtr ret = ImGuiNative.ImTextureData_GetTexID((ImTextureData*)(NativePtr));
+            ulong ret = ImGuiNative.ImTextureData_GetTexID((ImTextureData*)(NativePtr));
             return ret;
         }
         public ImTextureRef GetTexRef()
@@ -94,7 +94,7 @@ namespace ImGuiNET
         {
             ImGuiNative.ImTextureData_SetStatus((ImTextureData*)(NativePtr), status);
         }
-        public void SetTexID(IntPtr tex_id)
+        public void SetTexID(ulong tex_id)
         {
             ImGuiNative.ImTextureData_SetTexID((ImTextureData*)(NativePtr), tex_id);
         }

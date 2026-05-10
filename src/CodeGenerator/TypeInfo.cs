@@ -33,7 +33,7 @@ public class TypeInfo
             { "ImColor_c", "ImColor" },
             { "ImTextureRef_c", "ImTextureRef" },
             { "ImColor_Simple", "ImColor" },
-            { "ImTextureID", "IntPtr" },
+            { "ImTextureID", "ulong" },
             { "ImGuiID", "uint" },
             { "ImDrawIdx", "ushort" },
             { "ImDrawListSharedData", "IntPtr" },
@@ -63,7 +63,7 @@ public class TypeInfo
             { "ImFontLoader", "IntPtr" },
             { "ImFontAtlasBuilder", "IntPtr" },
             { "ImFontAtlasRectId", "int" },
-            { "ImTextureRef", "IntPtr" },
+            // { "ImTextureRef", "ImTextureRef" },
             { "ImDrawTextFlags", "int" },
             { "ImGuiFreeTypeLoaderFlags", "IntPtr" },
         };

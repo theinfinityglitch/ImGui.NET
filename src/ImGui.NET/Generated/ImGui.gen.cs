@@ -12969,23 +12969,23 @@ namespace ImGuiNET
             float ret = ImGuiNative.igGetWindowWidth();
             return ret;
         }
-        public static void Image(IntPtr tex_ref, Vector2 image_size)
+        public static void Image(ImTextureRef tex_ref, Vector2 image_size)
         {
             Vector2 uv0 = new Vector2();
             Vector2 uv1 = new Vector2(1, 1);
             ImGuiNative.igImage(tex_ref, image_size, uv0, uv1);
         }
-        public static void Image(IntPtr tex_ref, Vector2 image_size, Vector2 uv0)
+        public static void Image(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0)
         {
             Vector2 uv1 = new Vector2(1, 1);
             ImGuiNative.igImage(tex_ref, image_size, uv0, uv1);
         }
-        public static void Image(IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
+        public static void Image(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
         {
             ImGuiNative.igImage(tex_ref, image_size, uv0, uv1);
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr tex_ref, Vector2 image_size)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13017,7 +13017,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr tex_ref, Vector2 image_size)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13049,7 +13049,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr tex_ref, Vector2 image_size, Vector2 uv0)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13080,7 +13080,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr tex_ref, Vector2 image_size, Vector2 uv0)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13111,7 +13111,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13141,7 +13141,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13171,7 +13171,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13200,7 +13200,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13229,7 +13229,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13257,7 +13257,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13284,7 +13284,7 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public static void ImageWithBg(IntPtr tex_ref, Vector2 image_size)
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size)
         {
             Vector2 uv0 = new Vector2();
             Vector2 uv1 = new Vector2(1, 1);
@@ -13292,25 +13292,25 @@ namespace ImGuiNET
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
         }
-        public static void ImageWithBg(IntPtr tex_ref, Vector2 image_size, Vector2 uv0)
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0)
         {
             Vector2 uv1 = new Vector2(1, 1);
             Vector4 bg_col = new Vector4();
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
         }
-        public static void ImageWithBg(IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
         {
             Vector4 bg_col = new Vector4();
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
         }
-        public static void ImageWithBg(IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
         {
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
         }
-        public static void ImageWithBg(IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
         {
             ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
         }

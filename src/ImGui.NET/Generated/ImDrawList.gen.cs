@@ -44,7 +44,7 @@ namespace ImGuiNET
         public ref ImDrawCmdHeader _CmdHeader => ref Unsafe.AsRef<ImDrawCmdHeader>(&NativePtr->_CmdHeader);
         public ref ImDrawListSplitter _Splitter => ref Unsafe.AsRef<ImDrawListSplitter>(&NativePtr->_Splitter);
         public ImVector<Vector4> _ClipRectStack => new ImVector<Vector4>(NativePtr->_ClipRectStack);
-        public ImVector<IntPtr> _TextureStack => new ImVector<IntPtr>(NativePtr->_TextureStack);
+        public ImPtrVector<ImTextureRefPtr> _TextureStack => new ImPtrVector<ImTextureRefPtr>(NativePtr->_TextureStack, Unsafe.SizeOf<ImTextureRef>());
         public ImVector<byte> _CallbacksDataBuf => new ImVector<byte>(NativePtr->_CallbacksDataBuf);
         public ref float _FringeScale => ref Unsafe.AsRef<float>(&NativePtr->_FringeScale);
         public NullTerminatedString _OwnerName => new NullTerminatedString(NativePtr->_OwnerName);
@@ -89,7 +89,7 @@ namespace ImGuiNET
         {
             ImGuiNative.ImDrawList__SetDrawListSharedData((ImDrawList*)(NativePtr), data);
         }
-        public void _SetTexture(IntPtr tex_ref)
+        public void _SetTexture(ImTextureRef tex_ref)
         {
             ImGuiNative.ImDrawList__SetTexture((ImDrawList*)(NativePtr), tex_ref);
         }
@@ -205,29 +205,29 @@ namespace ImGuiNET
         {
             ImGuiNative.ImDrawList_AddEllipseFilled((ImDrawList*)(NativePtr), center, radius, col, rot, num_segments);
         }
-        public void AddImage(IntPtr tex_ref, Vector2 p_min, Vector2 p_max)
+        public void AddImage(ImTextureRef tex_ref, Vector2 p_min, Vector2 p_max)
         {
             Vector2 uv_min = new Vector2();
             Vector2 uv_max = new Vector2(1, 1);
             uint col = 4294967295;
             ImGuiNative.ImDrawList_AddImage((ImDrawList*)(NativePtr), tex_ref, p_min, p_max, uv_min, uv_max, col);
         }
-        public void AddImage(IntPtr tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min)
+        public void AddImage(ImTextureRef tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min)
         {
             Vector2 uv_max = new Vector2(1, 1);
             uint col = 4294967295;
             ImGuiNative.ImDrawList_AddImage((ImDrawList*)(NativePtr), tex_ref, p_min, p_max, uv_min, uv_max, col);
         }
-        public void AddImage(IntPtr tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max)
+        public void AddImage(ImTextureRef tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max)
         {
             uint col = 4294967295;
             ImGuiNative.ImDrawList_AddImage((ImDrawList*)(NativePtr), tex_ref, p_min, p_max, uv_min, uv_max, col);
         }
-        public void AddImage(IntPtr tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col)
+        public void AddImage(ImTextureRef tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col)
         {
             ImGuiNative.ImDrawList_AddImage((ImDrawList*)(NativePtr), tex_ref, p_min, p_max, uv_min, uv_max, col);
         }
-        public void AddImageQuad(IntPtr tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
+        public void AddImageQuad(ImTextureRef tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
         {
             Vector2 uv1 = new Vector2();
             Vector2 uv2 = new Vector2(1, 0);
@@ -236,7 +236,7 @@ namespace ImGuiNET
             uint col = 4294967295;
             ImGuiNative.ImDrawList_AddImageQuad((ImDrawList*)(NativePtr), tex_ref, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
         }
-        public void AddImageQuad(IntPtr tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
+        public void AddImageQuad(ImTextureRef tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
         {
             Vector2 uv2 = new Vector2(1, 0);
             Vector2 uv3 = new Vector2(1, 1);
@@ -244,34 +244,34 @@ namespace ImGuiNET
             uint col = 4294967295;
             ImGuiNative.ImDrawList_AddImageQuad((ImDrawList*)(NativePtr), tex_ref, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
         }
-        public void AddImageQuad(IntPtr tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
+        public void AddImageQuad(ImTextureRef tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
         {
             Vector2 uv3 = new Vector2(1, 1);
             Vector2 uv4 = new Vector2(0, 1);
             uint col = 4294967295;
             ImGuiNative.ImDrawList_AddImageQuad((ImDrawList*)(NativePtr), tex_ref, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
         }
-        public void AddImageQuad(IntPtr tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
+        public void AddImageQuad(ImTextureRef tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
         {
             Vector2 uv4 = new Vector2(0, 1);
             uint col = 4294967295;
             ImGuiNative.ImDrawList_AddImageQuad((ImDrawList*)(NativePtr), tex_ref, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
         }
-        public void AddImageQuad(IntPtr tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
+        public void AddImageQuad(ImTextureRef tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
         {
             uint col = 4294967295;
             ImGuiNative.ImDrawList_AddImageQuad((ImDrawList*)(NativePtr), tex_ref, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
         }
-        public void AddImageQuad(IntPtr tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+        public void AddImageQuad(ImTextureRef tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
         {
             ImGuiNative.ImDrawList_AddImageQuad((ImDrawList*)(NativePtr), tex_ref, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
         }
-        public void AddImageRounded(IntPtr tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col, float rounding)
+        public void AddImageRounded(ImTextureRef tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col, float rounding)
         {
             ImDrawFlags flags = (ImDrawFlags)0;
             ImGuiNative.ImDrawList_AddImageRounded((ImDrawList*)(NativePtr), tex_ref, p_min, p_max, uv_min, uv_max, col, rounding, flags);
         }
-        public void AddImageRounded(IntPtr tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col, float rounding, ImDrawFlags flags)
+        public void AddImageRounded(ImTextureRef tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col, float rounding, ImDrawFlags flags)
         {
             ImGuiNative.ImDrawList_AddImageRounded((ImDrawList*)(NativePtr), tex_ref, p_min, p_max, uv_min, uv_max, col, rounding, flags);
         }
@@ -748,7 +748,7 @@ namespace ImGuiNET
         {
             ImGuiNative.ImDrawList_PushClipRectFullScreen((ImDrawList*)(NativePtr));
         }
-        public void PushTexture(IntPtr tex_ref)
+        public void PushTexture(ImTextureRef tex_ref)
         {
             ImGuiNative.ImDrawList_PushTexture((ImDrawList*)(NativePtr), tex_ref);
         }

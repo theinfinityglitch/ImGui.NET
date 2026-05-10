@@ -327,11 +327,11 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern float igGetWindowWidth();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void igImage(IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1);
+        public static extern void igImage(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte igImageButton(byte* str_id, IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col);
+        public static extern byte igImageButton(byte* str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void igImageWithBg(IntPtr tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col);
+        public static extern void igImageWithBg(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igIndent(float indent_w);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -815,7 +815,7 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawCmd_destroy(ImDrawCmd* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ImDrawCmd_GetTexID(ImDrawCmd* self);
+        public static extern ulong ImDrawCmd_GetTexID(ImDrawCmd* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImDrawCmd* ImDrawCmd_ImDrawCmd();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -851,7 +851,7 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawList__SetDrawListSharedData(ImDrawList* self, IntPtr data);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImDrawList__SetTexture(ImDrawList* self, IntPtr tex_ref);
+        public static extern void ImDrawList__SetTexture(ImDrawList* self, ImTextureRef tex_ref);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawList__TryMergeDrawCmds(ImDrawList* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -875,11 +875,11 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawList_AddEllipseFilled(ImDrawList* self, Vector2 center, Vector2 radius, uint col, float rot, int num_segments);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImDrawList_AddImage(ImDrawList* self, IntPtr tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col);
+        public static extern void ImDrawList_AddImage(ImDrawList* self, ImTextureRef tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImDrawList_AddImageQuad(ImDrawList* self, IntPtr tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col);
+        public static extern void ImDrawList_AddImageQuad(ImDrawList* self, ImTextureRef tex_ref, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImDrawList_AddImageRounded(ImDrawList* self, IntPtr tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col, float rounding, ImDrawFlags flags);
+        public static extern void ImDrawList_AddImageRounded(ImDrawList* self, ImTextureRef tex_ref, Vector2 p_min, Vector2 p_max, Vector2 uv_min, Vector2 uv_max, uint col, float rounding, ImDrawFlags flags);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawList_AddLine(ImDrawList* self, Vector2 p1, Vector2 p2, uint col, float thickness);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -971,7 +971,7 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawList_PushClipRectFullScreen(ImDrawList* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImDrawList_PushTexture(ImDrawList* self, IntPtr tex_ref);
+        public static extern void ImDrawList_PushTexture(ImDrawList* self, ImTextureRef tex_ref);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawListSplitter_Clear(ImDrawListSplitter* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -1355,7 +1355,7 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern int ImTextureData_GetSizeInBytes(ImTextureData* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ImTextureData_GetTexID(ImTextureData* self);
+        public static extern ulong ImTextureData_GetTexID(ImTextureData* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImTextureRef ImTextureData_GetTexRef(ImTextureData* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -1363,15 +1363,15 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImTextureData_SetStatus(ImTextureData* self, ImTextureStatus status);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImTextureData_SetTexID(ImTextureData* self, IntPtr tex_id);
+        public static extern void ImTextureData_SetTexID(ImTextureData* self, ulong tex_id);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImTextureRef_destroy(IntPtr* self);
+        public static extern void ImTextureRef_destroy(ImTextureRef* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ImTextureRef_GetTexID(IntPtr* self);
+        public static extern ulong ImTextureRef_GetTexID(ImTextureRef* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr* ImTextureRef_ImTextureRef_Nil();
+        public static extern ImTextureRef* ImTextureRef_ImTextureRef_Nil();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr* ImTextureRef_ImTextureRef_TextureID(IntPtr tex_id);
+        public static extern ImTextureRef* ImTextureRef_ImTextureRef_TextureID(ulong tex_id);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImVec2_destroy(Vector2* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]

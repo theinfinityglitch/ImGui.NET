@@ -15,14 +15,14 @@ namespace ImGuiNET.SampleProgram.XNA
         private ImGuiRenderer _imGuiRenderer;
 
         private Texture2D _xnaTexture;
-        private IntPtr _imGuiTexture;
+        private ImTextureRef _imGuiTexture;
 
         public SampleGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1024;
             _graphics.PreferredBackBufferHeight = 768;
-            _graphics.PreferMultiSampling = false;
+            _graphics.PreferMultiSampling = true;
 
             IsMouseVisible = true;
         }
@@ -30,7 +30,6 @@ namespace ImGuiNET.SampleProgram.XNA
         protected override void Initialize()
         {
             _imGuiRenderer = new ImGuiRenderer(this);
-            _imGuiRenderer.RebuildFontAtlas();
 
             base.Initialize();
         }

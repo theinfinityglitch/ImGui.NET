@@ -8,7 +8,7 @@ namespace ImGuiNET
     public unsafe partial struct ImTextureRef
     {
         public ImTextureData* _TexData;
-        public IntPtr _TexID;
+        public ulong _TexID;
     }
     public unsafe partial struct ImTextureRefPtr
     {
@@ -19,14 +19,14 @@ namespace ImGuiNET
         public static implicit operator ImTextureRef* (ImTextureRefPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImTextureRefPtr(IntPtr nativePtr) => new ImTextureRefPtr(nativePtr);
         public ImTextureDataPtr _TexData => new ImTextureDataPtr(NativePtr->_TexData);
-        public ref IntPtr _TexID => ref Unsafe.AsRef<IntPtr>(&NativePtr->_TexID);
+        public ref ulong _TexID => ref Unsafe.AsRef<ulong>(&NativePtr->_TexID);
         public void Destroy()
         {
-            ImGuiNative.ImTextureRef_destroy((IntPtr*)(NativePtr));
+            ImGuiNative.ImTextureRef_destroy((ImTextureRef*)(NativePtr));
         }
-        public IntPtr GetTexID()
+        public ulong GetTexID()
         {
-            IntPtr ret = ImGuiNative.ImTextureRef_GetTexID((IntPtr*)(NativePtr));
+            ulong ret = ImGuiNative.ImTextureRef_GetTexID((ImTextureRef*)(NativePtr));
             return ret;
         }
     }
