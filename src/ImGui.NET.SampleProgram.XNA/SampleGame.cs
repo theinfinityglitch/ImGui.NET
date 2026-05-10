@@ -22,7 +22,7 @@ namespace ImGuiNET.SampleProgram.XNA
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1024;
             _graphics.PreferredBackBufferHeight = 768;
-            _graphics.PreferMultiSampling = true;
+            _graphics.PreferMultiSampling = false;
 
             IsMouseVisible = true;
         }
@@ -39,15 +39,15 @@ namespace ImGuiNET.SampleProgram.XNA
         {
             // Texture loading example
 
-			// First, load the texture as a Texture2D (can also be done using the XNA/FNA content pipeline)
-			_xnaTexture = CreateTexture(GraphicsDevice, 300, 150, pixel =>
-			{
-				var red = (pixel % 300) / 2;
-				return new Color(red, 1, 1);
-			});
+            // First, load the texture as a Texture2D (can also be done using the XNA/FNA content pipeline)
+            _xnaTexture = CreateTexture(GraphicsDevice, 300, 150, pixel =>
+            {
+                var red = (pixel % 300) / 2;
+                return new Color(red, 1, 1);
+            });
 
-			// Then, bind it to an ImGui-friendly pointer, that we can use during regular ImGui.** calls (see below)
-			_imGuiTexture = _imGuiRenderer.BindTexture(_xnaTexture);
+            // Then, bind it to an ImGui-friendly pointer, that we can use during regular ImGui.** calls (see below)
+            _imGuiTexture = _imGuiRenderer.BindTexture(_xnaTexture);
 
             base.LoadContent();
         }
@@ -91,7 +91,7 @@ namespace ImGuiNET.SampleProgram.XNA
                 ImGui.InputText("Text input", _textBuffer, 100);
 
                 ImGui.Text("Texture sample");
-                ImGui.Image(_imGuiTexture, new Num.Vector2(300, 150), Num.Vector2.Zero, Num.Vector2.One, Num.Vector4.One, Num.Vector4.One); // Here, the previously loaded texture is used
+                ImGui.Image(_imGuiTexture, new Num.Vector2(300, 150), Num.Vector2.Zero, Num.Vector2.One); // Here, the previously loaded texture is used
             }
 
             // 2. Show another simple window, this time using an explicit Begin/End pair
@@ -111,23 +111,23 @@ namespace ImGuiNET.SampleProgram.XNA
             }
         }
 
-		public static Texture2D CreateTexture(GraphicsDevice device, int width, int height, Func<int, Color> paint)
-		{
-			//initialize a texture
-			var texture = new Texture2D(device, width, height);
+        public static Texture2D CreateTexture(GraphicsDevice device, int width, int height, Func<int, Color> paint)
+        {
+            //initialize a texture
+            var texture = new Texture2D(device, width, height);
 
-			//the array holds the color for each pixel in the texture
-			Color[] data = new Color[width * height];
-			for(var pixel = 0; pixel < data.Length; pixel++)
-			{
-				//the function applies the color according to the specified pixel
-				data[pixel] = paint( pixel );
-			}
+            //the array holds the color for each pixel in the texture
+            Color[] data = new Color[width * height];
+            for (var pixel = 0; pixel < data.Length; pixel++)
+            {
+                //the function applies the color according to the specified pixel
+                data[pixel] = paint(pixel);
+            }
 
-			//set the color
-			texture.SetData( data );
+            //set the color
+            texture.SetData(data);
 
-			return texture;
-		}
-	}
+            return texture;
+        }
+    }
 }

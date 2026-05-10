@@ -131,7 +131,7 @@ namespace ImGuiNET
                 ImGui.SetNextWindowPos(new Vector2(650, 20), ImGuiCond.FirstUseEver);
                 ImGui.ShowDemoWindow(ref _showImGuiDemoWindow);
             }
-            
+
             if (ImGui.TreeNode("Tabs"))
             {
                 if (ImGui.TreeNode("Basic"))
@@ -209,21 +209,21 @@ namespace ImGuiNET
                 ImGui.Text("Memory editor currently supported.");
                 // _memoryEditor.Draw("Memory Editor", _memoryEditorData, _memoryEditorData.Length);
             }
-            
+
             // ReadOnlySpan<char> and .NET Standard 2.0 tests
             TestStringParameterOnDotNetStandard.Text(); // String overloads should always be available.
-            
+
             // On .NET Standard 2.1 or greater, you can use ReadOnlySpan<char> instead of string to prevent allocations.
             long allocBytesStringStart = GC.GetAllocatedBytesForCurrentThread();
             ImGui.Text($"Hello, world {Random.Shared.Next(100)}!");
             long allocBytesStringEnd = GC.GetAllocatedBytesForCurrentThread() - allocBytesStringStart;
             Console.WriteLine("GC (string): " + allocBytesStringEnd);
-                
+
             long allocBytesSpanStart = GC.GetAllocatedBytesForCurrentThread();
             ImGui.Text($"Hello, world {Random.Shared.Next(100)}!".AsSpan()); // Note that this call will STILL allocate memory due to string interpolation, but you can prevent that from happening by using an InterpolatedStringHandler.
             long allocBytesSpanEnd = GC.GetAllocatedBytesForCurrentThread() - allocBytesSpanStart;
             Console.WriteLine("GC (span): " + allocBytesSpanEnd);
-            
+
             ImGui.Text("Empty span:");
             ImGui.SameLine();
             ImGui.GetWindowDrawList().AddText(ImGui.GetCursorScreenPos(), uint.MaxValue, ReadOnlySpan<char>.Empty);

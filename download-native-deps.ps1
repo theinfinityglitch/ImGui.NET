@@ -5,7 +5,7 @@ param (
 
 if( -not $repository )
 {
-    $repository="https://github.com/mellinoe/imgui.net-nativebuild"
+    $repository="https://github.com/theinfinityglitch/imgui.net-nativebuild"
 }
 
 Write-Host Downloading native binaries from GitHub Releases...
@@ -84,7 +84,7 @@ if( -not $? )
 Write-Host "- cimgui.dylib"
 
 $client.DownloadFile(
-    "https://github.com/mellinoe/imgui.net-nativebuild/releases/download/$tag/definitions.json",
+    "https://github.com/theinfinityglitch/imgui.net-nativebuild/releases/download/$tag/definitions.json",
     "$PSScriptRoot/src/CodeGenerator/definitions/cimgui/definitions.json")
 if( -not $? )
 {
@@ -96,7 +96,7 @@ if( -not $? )
 Write-Host - definitions.json
 
 $client.DownloadFile(
-    "https://github.com/mellinoe/imgui.net-nativebuild/releases/download/$tag/structs_and_enums.json",
+    "https://github.com/theinfinityglitch/imgui.net-nativebuild/releases/download/$tag/structs_and_enums.json",
     "$PSScriptRoot/src/CodeGenerator/definitions/cimgui/structs_and_enums.json")
 if( -not $? )
 {

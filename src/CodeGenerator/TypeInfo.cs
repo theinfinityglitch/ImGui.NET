@@ -28,6 +28,10 @@ public class TypeInfo
             { "ImVec4", "Vector4" },
             { "ImWchar16", "ushort" }, //char is not blittable
             { "ImVec4_Simple", "Vector4" },
+            { "ImVec2_c", "Vector2" },
+            { "ImVec4_c", "Vector4" },
+            { "ImColor_c", "ImColor" },
+            { "ImTextureRef_c", "ImTextureRef" },
             { "ImColor_Simple", "ImColor" },
             { "ImTextureID", "IntPtr" },
             { "ImGuiID", "uint" },
@@ -41,7 +45,6 @@ public class TypeInfo
             { "EditorContext*", "IntPtr" },
             { "ImGuiMemAllocFunc", "IntPtr" },
             { "ImGuiMemFreeFunc", "IntPtr" },
-            { "ImFontBuilderIO", "IntPtr" },
             { "float[2]", "Vector2*" },
             { "float[3]", "Vector3*" },
             { "float[4]", "Vector4*" },
@@ -57,6 +60,12 @@ public class TypeInfo
             { "ImPlotTransform", "IntPtr" },
             { "ImGuiKeyChord", "ImGuiKey" },
             { "ImGuiSelectionUserData", "long" },
+            { "ImFontLoader", "IntPtr" },
+            { "ImFontAtlasBuilder", "IntPtr" },
+            { "ImFontAtlasRectId", "int" },
+            { "ImTextureRef", "IntPtr" },
+            { "ImDrawTextFlags", "int" },
+            { "ImGuiFreeTypeLoaderFlags", "IntPtr" },
         };
 
     public static readonly List<string> WellKnownEnums =
@@ -82,10 +91,10 @@ public class TypeInfo
     public static readonly HashSet<string> CustomDefinedTypes =
     [
         "ImVector",
-            "ImVec2",
-            "ImVec4",
-            "ImGuiStoragePair",
-        ];
+        "ImVec2",
+        "ImVec4",
+        "ImGuiStoragePair",
+    ];
 
     public static readonly Dictionary<string, string> WellKnownDefaultValues = new()
         {

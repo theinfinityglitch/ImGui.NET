@@ -172,17 +172,18 @@ internal static partial class Program
                         vectorElementType = wellKnown;
                     }
 
+                    bool isImVectorPtr = typeStr == "ImVector*";
+
                     if (GetWrappedType(vectorElementType + "*", out string wrappedElementType))
                     {
-                        writer.WriteLine($"public ImPtrVector<{wrappedElementType}> {field.Name} => new ImPtrVector<{wrappedElementType}>(NativePtr->{field.Name}, Unsafe.SizeOf<{vectorElementType}>());");
+                        writer.WriteLine($"public ImPtrVector<{wrappedElementType}> {field.Name} => new ImPtrVector<{wrappedElementType}>({(isImVectorPtr ? $"*NativePtr->{field.Name}" : $"NativePtr->{field.Name}")}, Unsafe.SizeOf<{vectorElementType}>());");
                     }
                     else
                     {
                         if (GetWrappedType(vectorElementType, out wrappedElementType))
-                        {
                             vectorElementType = wrappedElementType;
-                        }
-                        writer.WriteLine($"public ImVector<{vectorElementType}> {field.Name} => new ImVector<{vectorElementType}>(NativePtr->{field.Name});");
+
+                        writer.WriteLine($"public ImVector<{vectorElementType}> {field.Name} => new ImVector<{vectorElementType}>({(isImVectorPtr ? $"*NativePtr->{field.Name}" : $"NativePtr->{field.Name}")});");
                     }
                 }
                 else
@@ -493,6 +494,8 @@ internal static partial class Program
 
             string correctedIdentifier = CorrectIdentifier(tr.Name);
             string nativeTypeName = GetTypeString(tr.Type, tr.IsFunctionPointer);
+            string resolvedType = GetTypeString(tr.Type, tr.IsFunctionPointer);
+            bool mapsToIntPtr = resolvedType == "IntPtr";
             if (correctedIdentifier == "pOut" && overload.ReturnType == "void")
             {
                 pOutIndex = i;
@@ -639,7 +642,7 @@ internal static partial class Program
                 marshalledParameters[i] = new MarshalledParameter(wrappedParamType, false, nativeArgName, false);
                 preCallLines.Add($"{tr.Type} {nativeArgName} = {correctedIdentifier}.NativePtr;");
             }
-            else if ((tr.Type.EndsWith("*") || tr.Type.Contains("[") || tr.Type.EndsWith("&")) && tr.Type != "void*" && tr.Type != "ImGuiContext*" && tr.Type != "ImPlotContext*" && tr.Type != "EditorContext*")
+            else if ((tr.Type.EndsWith("*") || tr.Type.Contains("[") || tr.Type.EndsWith("&")) && !mapsToIntPtr && tr.Type != "void*" && tr.Type != "ImGuiContext*" && tr.Type != "ImPlotContext*" && tr.Type != "EditorContext*")
             {
                 string nonPtrType;
                 if (tr.Type.Contains("["))
