@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using ImGuiNET;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -393,7 +392,7 @@ public class ImGuiRenderer
         _indexBuffer.SetData(_indexData, 0, drawData.TotalIdxCount * sizeof(ushort));
     }
 
-    private unsafe void RenderCommandLists(ImDrawDataPtr drawData)
+    private void RenderCommandLists(ImDrawDataPtr drawData)
     {
         _graphicsDevice.SetVertexBuffer(_vertexBuffer);
         _graphicsDevice.Indices = _indexBuffer;
